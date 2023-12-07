@@ -16,21 +16,15 @@ fun main(){
 
     var result = 0.0
 
-    if (operator == "+") {
-        result = calc.add(AddOperation(), num1, num2)
-    } else if (operator == "-") {
-        result = calc.minus(MinusOperation(), num1, num2)
-    } else if (operator == "*") {
-        result = calc.multiply(MultiplyOperation(), num1, num2)
-    } else if (operator == "/") {
-        result = calc.devide(DivideOperation(), num1, num2)
-    } else if (operator == "%") {
-        result = calc.rest(RestOperation(), num1, num2)
-    } else {
-        println("지원하지 않는 연산자입니다.")
+    when (operator){
+        "+" -> result = calc.add(AddOperation(), num1, num2)
+        "-" -> result = calc.minus(MinusOperation(), num1, num2)
+        "*" -> result = calc.multiply(MultiplyOperation(), num1, num2)
+        "/" -> result = calc.devide(DivideOperation(), num1, num2)
+        "%" -> result = calc.rest(RestOperation(), num1, num2)
     }
 
-    println("${num1}과 ${num2}의 ${operator} 결과는 ${result}")
+    println("${num1}과 ${num2}의 ${operator} 결과는 ${result} 입니다.")
 }
 
 //
@@ -54,22 +48,21 @@ class Calculator {
 
 
 class AddOperation{
-     fun operate(num1: Double, num2: Double): Double = (num1 + num2).toDouble()
+    fun operate(num1: Double, num2: Double): Double = (num1 + num2).toDouble()
 }
 
 class MinusOperation{
-     fun operate(num1: Double, num2: Double): Double = (num1 - num2).toDouble()
+    fun operate(num1: Double, num2: Double): Double = (num1 - num2).toDouble()
 }
 
 class MultiplyOperation{
-     fun operate(num1: Double, num2: Double): Double = (num1 * num2).toDouble()
+    fun operate(num1: Double, num2: Double): Double = (num1 * num2).toDouble()
 }
 
 class DivideOperation{
-     fun operate(num1: Double, num2: Double): Double = (num1 / num2).toDouble()
+    fun operate(num1: Double, num2: Double): Double = (num1 / num2).toDouble()
 }
 
 class RestOperation{
-     fun operate(num1: Double, num2: Double): Double = (num1 % num2).toDouble()
+    fun operate(num1: Double, num2: Double): Double = (num1 % num2).toDouble()
 }
-
