@@ -27,7 +27,6 @@ fun main(){
     println("${num1}과 ${num2}의 ${operator} 결과는 ${result} 입니다.")
 }
 
-//
 class Calculator {
     fun add (aaa: AddOperation, num1:Double, num2:Double):Double{
         return aaa.operate(num1, num2)
