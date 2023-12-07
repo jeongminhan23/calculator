@@ -1,0 +1,75 @@
+package src.CalculatorLv3
+
+fun main(){
+    val calc = Calculator()
+
+    println("계산기를 실행합니다.")
+
+    println("첫번째 숫자를 입력해 주세요")
+    var num1 = readLine()!!.toDouble()
+
+    println("두번째 숫자를 입력해 주세요")
+    var num2 = readLine()!!.toDouble()
+
+    println("연산자를 입력해 주세요.")
+    var operator = readLine()!!.toString()
+
+    var result = 0.0
+
+    if (operator == "+") {
+        result = calc.add(AddOperation(), num1, num2)
+    } else if (operator == "-") {
+        result = calc.minus(MinusOperation(), num1, num2)
+    } else if (operator == "*") {
+        result = calc.multiply(MultiplyOperation(), num1, num2)
+    } else if (operator == "/") {
+        result = calc.devide(DivideOperation(), num1, num2)
+    } else if (operator == "%") {
+        result = calc.rest(RestOperation(), num1, num2)
+    } else {
+        println("지원하지 않는 연산자입니다.")
+    }
+
+    println("${num1}과 ${num2}의 ${operator} 결과는 ${result}")
+}
+
+//
+class Calculator {
+    fun add (aaa: AddOperation, num1:Double, num2:Double):Double{
+        return aaa.operate(num1, num2)
+    }
+    fun minus (bbb: MinusOperation, num1:Double, num2:Double):Double{
+        return bbb.operate(num1, num2)
+    }
+    fun multiply (ccc: MultiplyOperation, num1:Double, num2:Double):Double{
+        return ccc.operate(num1, num2)
+    }
+    fun devide (ddd: DivideOperation, num1:Double, num2:Double):Double{
+        return ddd.operate(num1, num2)
+    }
+    fun rest (eee: RestOperation, num1:Double, num2:Double):Double{
+        return eee.operate(num1, num2)
+    }
+}
+
+
+class AddOperation{
+     fun operate(num1: Double, num2: Double): Double = (num1 + num2).toDouble()
+}
+
+class MinusOperation{
+     fun operate(num1: Double, num2: Double): Double = (num1 - num2).toDouble()
+}
+
+class MultiplyOperation{
+     fun operate(num1: Double, num2: Double): Double = (num1 * num2).toDouble()
+}
+
+class DivideOperation{
+     fun operate(num1: Double, num2: Double): Double = (num1 / num2).toDouble()
+}
+
+class RestOperation{
+     fun operate(num1: Double, num2: Double): Double = (num1 % num2).toDouble()
+}
+
