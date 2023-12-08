@@ -1,5 +1,10 @@
 fun main(){
-    val calc = Calculator() //이 부분을 어떻게 해야 할지 모르겠습니다.ㅠㅠㅠ
+    val calcadd = Calculator(AddOperation())
+    val calcminus = Calculator(MinusOperation())
+    val calcmultiply = Calculator(MultiplyOperation())
+    val calcdivide = Calculator(DivideOperation())
+    val calcrest = Calculator(RestOperation())
+
 
     println("계산기를 실행합니다.")
 
@@ -15,11 +20,11 @@ fun main(){
     var result = 0.0
 
     when (operator){
-        "+" -> result = calc.operate(num1, num2)
-        "-" -> result = calc.operate(num1, num2)
-        "*" -> result = calc.operate(num1, num2)
-        "/" -> result = calc.operate(num1, num2)
-        "%" -> result = calc.operate(num1, num2)
+        "+" -> result = calcadd.operate(num1, num2)
+        "-" -> result = calcminus.operate(num1, num2)
+        "*" -> result = calcmultiply.operate(num1, num2)
+        "/" -> result = calcdivide.operate(num1, num2)
+        "%" -> result = calcrest.operate(num1, num2)
     }
 
     println("${num1}과 ${num2}의 ${operator} 결과는 ${result} 입니다.")
