@@ -1,0 +1,64 @@
+fun main(){
+    val calc = Calculator() //이 부분을 어떻게 해야 할지 모르겠습니다.ㅠㅠㅠ
+
+    println("계산기를 실행합니다.")
+
+    println("첫번째 숫자를 입력해 주세요")
+    var num1 = readLine()!!.toDouble()
+
+    println("두번째 숫자를 입력해 주세요")
+    var num2 = readLine()!!.toDouble()
+
+    println("연산자를 입력해 주세요.")
+    var operator = readLine()!!.toString()
+
+    var result = 0.0
+
+    when (operator){
+        "+" -> result = calc.operate(num1, num2)
+        "-" -> result = calc.operate(num1, num2)
+        "*" -> result = calc.operate(num1, num2)
+        "/" -> result = calc.operate(num1, num2)
+        "%" -> result = calc.operate(num1, num2)
+    }
+
+    println("${num1}과 ${num2}의 ${operator} 결과는 ${result} 입니다.")
+}
+
+
+class Calculator (val operation : AbstractOperation) {
+   fun operate(num1: Double, num2: Double) :Double {
+       return operation.operate(num1, num2)
+   }
+}
+
+
+class AddOperation:AbstractOperation() {
+    override fun operate(num1: Double, num2: Double): Double = (num1 + num2).toDouble()
+}
+
+class MinusOperation:AbstractOperation() {
+    override fun operate(num1: Double, num2: Double): Double = (num1 - num2).toDouble()
+}
+
+class MultiplyOperation:AbstractOperation() {
+    override fun operate(num1: Double, num2: Double): Double = (num1 * num2).toDouble()
+}
+
+class DivideOperation:AbstractOperation() {
+    override fun operate(num1: Double, num2: Double): Double {
+        // num2가 0이라면 "Divide by Zero"를 발생시켜줘서 예외를 처리해준다 (프로그램의 안정성 향상)
+        require(num2 != 0.0) {
+            ArithmeticException( "Divide by Zero")
+        }
+        return (num1 / num2).toDouble()
+    }
+}
+
+class RestOperation:AbstractOperation() {
+    override fun operate(num1: Double, num2: Double): Double = (num1 % num2).toDouble()
+}
+
+abstract class AbstractOperation {
+    abstract fun operate(num1: Double, num2: Double): Double
+}
